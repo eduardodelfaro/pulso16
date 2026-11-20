@@ -8,6 +8,7 @@ Caja de ritmos de bolsillo que también es un videojuego retro. Haces música au
 
 - 16 pistas y 16 pasos para armar ritmos
 - Un juego retro que reacciona a cada golpe, con jefes y mundos
+- Pantalla grande (gira el celular) y vista de **Ondas** para ver el sonido dibujado
 - 10 kits de sonido que cambias con ◀ ▶ (Normal, 8-bit, castillo, hongos, bosque, psicodélico, calculadora, abismo, arena)
 - Kaos Pad: arrastras el dedo y tocas (synth, arpegio, filtros, atmósferas)
 - Elementos en vivo: viento y lluvia
