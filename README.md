@@ -10,7 +10,7 @@ Caja de ritmos de bolsillo que también es un videojuego retro. Haces música au
 - Un juego retro que reacciona a cada golpe, con jefes y mundos
 - 10 kits de sonido que cambias con ◀ ▶ (Normal, 8-bit, castillo, hongos, bosque, psicodélico, calculadora, abismo, arena)
 - Kaos Pad: arrastras el dedo y tocas (synth, arpegio, filtros, atmósferas)
-- Elementos en vivo: fuego, rayo, viento y lluvia
+- Elementos en vivo: viento y lluvia
 - Modo para aprender canciones y modo para improvisar
 - 26 estilos visuales
 - Teclado MIDI (probado con Arturia MiniLab mkII) mediante Web MIDI
