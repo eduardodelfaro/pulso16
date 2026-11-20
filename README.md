@@ -11,7 +11,7 @@ Caja de ritmos de bolsillo que también es un videojuego retro. Haces música au
 - Pantalla grande (gira el celular) y vista de **Ondas** para ver el sonido dibujado
 - 10 kits de sonido que cambias con ◀ ▶ (Normal, 8-bit, castillo, hongos, bosque, psicodélico, calculadora, abismo, arena)
 - Kaos Pad: arrastras el dedo y tocas (synth, arpegio, filtros, atmósferas)
-- Elementos en vivo: viento y lluvia
+- 12 efectos en vivo que se mantienen apretados (filtros, bucles, eco, bitcrush, gran sala, corte, bombeo, subida…)
 - Modo para aprender canciones y modo para improvisar
 - 26 estilos visuales
 - Teclado MIDI (probado con Arturia MiniLab mkII) mediante Web MIDI
