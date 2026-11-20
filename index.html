@@ -47,7 +47,7 @@ body{background:radial-gradient(1200px 600px at 50% -10%,#23262c 0%,#0d0e10 60%)
 .trk .m{position:absolute;top:5px;right:5px;width:21px;height:18px;border-radius:5px;font-size:10px;font-weight:700;display:grid;place-items:center;background:#1e2024;color:var(--mut);border:1px solid #3a3d44}
 .trk.muted .m{background:#e04040;color:#fff;border-color:transparent}
 .trk.muted .nm{opacity:.4;text-decoration:line-through}
-.steps{display:grid;grid-template-columns:repeat(16,1fr);gap:7px}
+.steps{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:7px}
 .step{position:relative;aspect-ratio:1;border-radius:50%;border:3px solid #26282d;background:radial-gradient(circle at 50% 35%,#4f535b,#2b2e34 70%);box-shadow:0 4px 9px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.12);cursor:pointer;color:var(--mut);font:inherit;font-size:10px;padding:0;display:grid;place-items:center;user-select:none;touch-action:manipulation}
 .step:nth-child(4n):not(:last-child){margin-right:7px}
 .step.on{border-color:var(--c);color:#fff;box-shadow:0 0 14px -2px var(--c),0 4px 9px rgba(0,0,0,.5),inset 0 0 0 30px color-mix(in srgb,var(--c) calc(var(--vv)*55%),transparent)}
@@ -141,7 +141,7 @@ body.helpmode [data-help]:hover{outline:2px dashed var(--cy);outline-offset:3px}
 @media (max-width:820px){
  .top{grid-template-columns:1fr}
  .tracks{grid-template-columns:repeat(4,1fr)}
- .steps{grid-template-columns:repeat(8,1fr)}
+ .steps{grid-template-columns:repeat(8,minmax(0,1fr))}
  .step:nth-child(4n):not(:last-child){margin-right:0}
  .pats{grid-template-columns:repeat(8,1fr)}
  .fxs{grid-template-columns:repeat(4,1fr)}
@@ -553,6 +553,16 @@ body.fx-gate .lcdWrap,body.fx-gate .trk{animation:gateflk .14s steps(2) infinite
 body.fx-pump .logo,body.fx-pump .lcdWrap{animation:pumpk .5s ease-out infinite}
 @keyframes pumpk{0%{transform:scale(.985)}100%{transform:scale(1)}}
 body.fx-rise .device{filter:brightness(1.14) contrast(1.08)}
+
+/* ---- orden por pasos (v5) ---- */
+.flowg{display:flex;align-items:center;flex-wrap:wrap;gap:4px 10px;margin:30px 2px 4px;padding-top:16px;border-top:1px solid var(--line)}
+.top + .flowg{margin-top:18px}
+.flowg .gn{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--acc);color:#111;font-size:15px;font-weight:700;box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 25%,transparent)}
+.flowg .gn.opt{background:var(--btn);color:var(--ink);box-shadow:none}
+.flowg .gt{font-size:17px;font-weight:700;letter-spacing:.01em}
+.flowg .gs{font-size:12.5px;color:var(--mut);flex-basis:100%;padding-left:38px;margin-top:-2px}
+.flowg + .sect{margin-top:10px}
+@media (min-width:821px){ .flowg .gs{flex-basis:auto;padding-left:0;margin-top:0} }
 </style>
 </head>
 <body>
@@ -579,11 +589,68 @@ body.fx-rise .device{filter:brightness(1.14) contrast(1.08)}
    </div>
   </div>
 
+  <div class="flowg"><b class="gn">1</b><span class="gt">Elige el sonido</span><span class="gs">toca una pista para escucharla y elegirla</span></div>
   <div class="sect" data-col="tracks">
    <div class="lab">Pistas <button class="q" data-q="tracks">?</button> <span class="kitnav" id="kitNav"><button id="kitPrev" title="Kit anterior">◀</button><button id="kitName" title="Escuchar muestra del kit">🎛 Normal</button><button id="kitNext" title="Kit siguiente">▶</button><button class="q" data-q="kits">?</button><button class="kitsug" id="kitSug"></button></span> <span class="hint">clic para elegir · M silencia</span></div>
    <div class="tracks" id="tracks"></div>
   </div>
 
+
+  <div class="flowg"><b class="gn">2</b><span class="gt">Marca cuándo suena</span><span class="gs">enciende los pasos de la pista elegida</span></div>
+  <div class="sect">
+   <div class="lab" id="stepLab">Pasos</div>
+   <div class="steps" id="steps"></div>
+  </div>
+
+  <div class="sect"><div class="editor" id="editor"></div></div>
+
+  <div class="sect row tools">
+   <button class="b" id="bUndo">↶ Deshacer</button>
+   <button class="b" id="bExpAudio">💾 Exportar audio (MP3)</button>
+   <span class="morewrap"><button class="b" id="bMore">🎲 Azar · 🗑 Borrar · ⧉ Copiar ▾</button><span class="morebox" id="moreBox"></span></span>
+   <button class="b" id="bRandT">Azar pista</button>
+   <button class="b" id="bRandP">Azar patrón</button>
+   <button class="b" id="bClrT">Borrar pista</button>
+   <button class="b" id="bClrP">Borrar patrón</button>
+  </div>
+
+
+  <div class="flowg"><b class="gn">3</b><span class="gt">Arma la canción</span><span class="gs">guarda variaciones en patrones y encadénalas</span></div>
+  <div class="sect" data-col="pats">
+   <div class="lab">Patrones <button class="q" data-q="pattern">?</button> <span class="hint">durante la reproducción, el cambio entra al terminar el compás</span>
+    <span class="sp"></span>
+    <button class="b sm" id="bCopy">Copiar</button>
+    <button class="b sm" id="bPaste">Pegar</button>
+    <button class="b sm" id="bChain">Cadena</button>
+   </div>
+   <div class="pats" id="pats"></div>
+   <div class="chain" id="chain"></div>
+  </div>
+
+
+  <div class="flowg"><b class="gn">4</b><span class="gt">Toca en vivo</span><span class="gs">mientras suena: efectos y Kaos Pad</span></div>
+  <div class="sect" data-col="fx">
+   <div class="lab">Efectos en vivo <button class="q" data-q="fx">?</button> <span class="hint">mantén presionado</span></div>
+   <div class="fxs" id="fxs"></div>
+  </div>
+
+  <div id="kaosHome"><div class="sect" data-col="kaos" id="kaosSect">
+   <div class="lab">Kaos Pad <button class="q" data-q="kaos">?</button> <span class="hint">toca y arrastra: synth, arpegio o efectos</span></div>
+   <div class="kaos">
+    <canvas id="kpad"></canvas>
+    <div class="kctl" id="kaosCtl">
+     <div class="kmodes" id="kModes"></div>
+     <div class="kopt" id="kWaveRow"><span class="nlab">SONIDO CUADRADO</span><div class="row" id="kWaves"></div></div>
+     <div class="kopt" id="kArpRow"><span class="nlab">ARPEGIO</span><div class="row" id="kArps"></div></div>
+     <div class="kopt" id="kAtmRow" hidden><div id="kAtms"></div><button class="b sm" id="kLayers" disabled>🔇 Apagar capas (0)</button></div>
+     <button class="b" id="kHold">✋ Mantener: no</button>
+     <div class="kinfo" id="kInfo"></div>
+    </div>
+   </div>
+  </div></div>
+
+
+  <div class="flowg"><b class="gn opt">+</b><span class="gt">Perillas y teclado</span><span class="gs">tempo, volumen y sonido de cada pista · también funciona con un MiniLab conectado</span></div>
   <div class="sect" data-col="minilab">
    <div class="lab">Tu MiniLab en pantalla <button class="q" data-q="midi">?</button> <span class="hint">cada perilla, pad y tecla está en el mismo lugar que en el teclado real</span></div>
    <div class="console" id="console">
@@ -614,55 +681,6 @@ body.fx-rise .device{filter:brightness(1.14) contrast(1.08)}
     <div class="mhint" id="mHint"></div>
    </div>
   </div>
-
-  <div id="kaosHome"><div class="sect" data-col="kaos" id="kaosSect">
-   <div class="lab">Kaos Pad <button class="q" data-q="kaos">?</button> <span class="hint">toca y arrastra: synth, arpegio o efectos</span></div>
-   <div class="kaos">
-    <canvas id="kpad"></canvas>
-    <div class="kctl" id="kaosCtl">
-     <div class="kmodes" id="kModes"></div>
-     <div class="kopt" id="kWaveRow"><span class="nlab">SONIDO CUADRADO</span><div class="row" id="kWaves"></div></div>
-     <div class="kopt" id="kArpRow"><span class="nlab">ARPEGIO</span><div class="row" id="kArps"></div></div>
-     <div class="kopt" id="kAtmRow" hidden><div id="kAtms"></div><button class="b sm" id="kLayers" disabled>🔇 Apagar capas (0)</button></div>
-     <button class="b" id="kHold">✋ Mantener: no</button>
-     <div class="kinfo" id="kInfo"></div>
-    </div>
-   </div>
-  </div></div>
-
-  <div class="sect">
-   <div class="lab" id="stepLab">Pasos</div>
-   <div class="steps" id="steps"></div>
-  </div>
-
-  <div class="sect"><div class="editor" id="editor"></div></div>
-
-  <div class="sect row tools">
-   <button class="b" id="bUndo">↶ Deshacer</button>
-   <button class="b" id="bExpAudio">💾 Exportar audio (MP3)</button>
-   <span class="morewrap"><button class="b" id="bMore">🎲 Azar · 🗑 Borrar · ⧉ Copiar ▾</button><span class="morebox" id="moreBox"></span></span>
-   <button class="b" id="bRandT">Azar pista</button>
-   <button class="b" id="bRandP">Azar patrón</button>
-   <button class="b" id="bClrT">Borrar pista</button>
-   <button class="b" id="bClrP">Borrar patrón</button>
-  </div>
-
-  <div class="sect" data-col="pats">
-   <div class="lab">Patrones <button class="q" data-q="pattern">?</button> <span class="hint">durante la reproducción, el cambio entra al terminar el compás</span>
-    <span class="sp"></span>
-    <button class="b sm" id="bCopy">Copiar</button>
-    <button class="b sm" id="bPaste">Pegar</button>
-    <button class="b sm" id="bChain">Cadena</button>
-   </div>
-   <div class="pats" id="pats"></div>
-   <div class="chain" id="chain"></div>
-  </div>
-
-  <div class="sect" data-col="fx">
-   <div class="lab">Efectos en vivo <button class="q" data-q="fx">?</button> <span class="hint">mantén presionado</span></div>
-   <div class="fxs" id="fxs"></div>
-  </div>
-
 
   <div class="sect row" id="globalRow" hidden>
    <select class="b" id="selRoot"></select>
@@ -2306,9 +2324,9 @@ const TOUR=[
  {s:'.lcdWrap',t:'La pantalla',d:'Es un videojuego que se mueve con la música. Cada instrumento hace algo distinto.'},
  {s:'#tracks',t:'Elige un instrumento',d:'Cada botón es un instrumento. El que tiene el borde de color es el que estás editando.'},
  {s:'#steps',t:'Dibuja el ritmo',d:'Enciende y apaga círculos. Cada grupo de 4 es un pulso: cuenta “1 y 2 y 3 y 4 y”.',v:()=>svgSteps([0,4,8,12])},
- {s:'#knobs',t:'Cambia el sonido',d:'Arrastra las perillas hacia arriba o abajo, o usa la rueda del mouse. Doble clic las devuelve al centro.'},
  {s:'#pats',t:'Más ideas',d:'Tienes 16 patrones para guardar ritmos distintos y luego encadenarlos como una canción.'},
  {s:'#fxs',t:'Juega en vivo',d:'Mantén presionado un efecto mientras suena. Al soltarlo, todo vuelve a la normalidad.'},
+ {s:'#knobs',t:'Cambia el sonido',d:'Arrastra las perillas hacia arriba o abajo, o usa la rueda del mouse. Doble clic las devuelve al centro.'},
  {s:'#helpFab',t:'Si te pierdes',d:'Este botón <b>?</b> tiene el modo pregunta (tocas algo y te explica qué es), recetas de ritmos listas y un diccionario musical.'},
 ];
 let tourI=-1; const ring=$('#ring');
