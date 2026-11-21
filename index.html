@@ -563,6 +563,18 @@ body.fx-rise .device{filter:brightness(1.14) contrast(1.08)}
 .flowg .gs{font-size:12.5px;color:var(--mut);flex-basis:100%;padding-left:38px;margin-top:-2px}
 .flowg + .sect{margin-top:10px}
 @media (min-width:821px){ .flowg .gs{flex-basis:auto;padding-left:0;margin-top:0} }
+
+/* ---- estilo Cumbia villera (v6): noche de barrio, chapa y neón ---- */
+body[data-skin=villera]{--page:radial-gradient(900px 600px at 50% 0%,#3a0a4a 0%,#12021c 55%,#07010d 100%) #07010d;--dev:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 9px,rgba(0,0,0,.1) 9px 18px),linear-gradient(180deg,#26102f,#140818);--devb:#ff2e88;--devsh:0 0 0 2px #000,0 0 0 4px #ff2e88,0 0 40px -8px #ff2e88,0 30px 80px rgba(0,0,0,.8);--ink:#fff4fb;--mut:#cfaedb;--acc:#ff2e88;--accink:#fff;--cy:#3ad6ff;--btn:#2c1238;--btnink:#fff4fb;--btnb:#5e2c74;--panel:#1a0a22;--grp:#22102c;--st1:#4a2260;--st2:#1a0a22;--stb:#3a1a4a;--dial1:#5e2c74;--dial2:#12061a;--bezel:#000;--rad:12px;--shadow:0 3px 0 #000,0 0 12px rgba(255,46,136,.14)}
+body[data-skin=villera] .logo{font-family:'Permanent Marker','Space Grotesk',sans-serif;color:#ffe14d;text-shadow:0 0 10px #ff2e88,0 0 22px #ff2e88,3px 3px 0 #3ad6ff;transform:rotate(-2deg)}
+body[data-skin=villera] .logo b{color:#3ad6ff}
+body[data-skin=villera] .flowg .gt{font-family:'Permanent Marker','Space Grotesk',sans-serif;letter-spacing:.03em;color:#ffe14d}
+body[data-skin=villera] .flowg .gn{background:#3ad6ff;color:#07010d}
+body[data-skin=villera] .lab,body[data-skin=villera] .nlab{color:#3dff8a}
+body[data-skin=villera] .model::after{content:'  ★ PURO BARRIO ★';color:#ffe14d;font-size:10px;letter-spacing:.08em}
+body[data-skin=villera] .device{animation:villa 3.4s ease-in-out infinite}
+@keyframes villa{50%{box-shadow:0 0 0 2px #000,0 0 0 4px #3ad6ff,0 0 46px -8px #3ad6ff,0 30px 80px rgba(0,0,0,.8)}}
+body.lite[data-skin=villera] .device{animation:none}
 </style>
 </head>
 <body>
@@ -585,7 +597,7 @@ body.fx-rise .device{filter:brightness(1.14) contrast(1.08)}
     <div class="nowcard"><span class="nlab">PISTA</span><span class="trnav"><button class="b sm" id="trPrev" title="Pista anterior (←)">◀</button><b id="nowTrack"></b><button class="b sm" id="trNext" title="Pista siguiente (→)">▶</button></span><span class="nlab">MODO</span><b id="nowMode"></b><span class="nlab">PATRÓN</span><b id="nowPat"></b></div>
     <button class="b play big" id="bPlay">▶ Play</button>
     <div class="row2"><button class="b rec" id="bRec">● Grabar</button><button class="b" id="bMode">Modo: Escribir</button></div>
-    <div class="mini"><span class="nlab">AHORA EN TU MINILAB</span><br>Pads: <span id="nowPads"></span><br>Teclas: <span id="nowKeys"></span><br><span class="hint2">Cambiar pista: ◀ ▶ · flechas ← → · perilla 1</span></div>
+    <div class="mini"><span class="nlab">AHORA EN TU TECLADO</span><br>Pads: <span id="nowPads"></span><br>Teclas: <span id="nowKeys"></span><br><span class="hint2">Cambiar pista: ◀ ▶ · flechas ← → · perilla 1</span></div>
    </div>
   </div>
 
@@ -650,16 +662,16 @@ body.fx-rise .device{filter:brightness(1.14) contrast(1.08)}
   </div></div>
 
 
-  <div class="flowg"><b class="gn opt">+</b><span class="gt">Perillas y teclado</span><span class="gs">tempo, volumen y sonido de cada pista · también funciona con un MiniLab conectado</span></div>
+  <div class="flowg"><b class="gn opt">+</b><span class="gt">Perillas y teclado</span><span class="gs">tempo, volumen y sonido de cada pista · y tu teclado MIDI (MiniLab, MPK Mini, Launchkey, Korg…)</span></div>
   <div class="sect" data-col="minilab">
-   <div class="lab">Tu MiniLab en pantalla <button class="q" data-q="midi">?</button> <span class="hint">cada perilla, pad y tecla está en el mismo lugar que en el teclado real</span></div>
+   <div class="lab">Tu teclado en pantalla <button class="q" data-q="midi">?</button> <span class="hint">cada perilla, pad y tecla está en el mismo lugar que en el teclado real</span></div>
    <div class="console" id="console">
     <div class="cl">
      <div class="mlogo">MiniLab <small>mkII</small></div>
      <button class="b on" id="bMidi">Conectar teclado</button>
-     <button class="b" id="bCfg">⚙ Configurar MiniLab</button>
+     <button class="b" id="bCfg">⚙ Configurar teclado</button>
      <div class="mrow"><span class="mled" id="mLed"></span><span class="mstat" id="mStat">Sin conectar</span></div>
-     <div class="mmon" id="mMon">Enchufa el MiniLab por USB y pulsa <b>Conectar teclado</b>.</div>
+     <div class="mmon" id="mMon">Enchufa tu teclado MIDI por USB (MiniLab, MPK Mini, Launchkey, Korg, M-Audio, Roland, Yamaha, Casio…) y pulsa <b>Conectar teclado</b>.</div>
      <div class="strips">
       <div class="stripw"><div class="strip" id="stPitch"><i></i></div><span>Pitch<br><b>bucles</b></span></div>
       <div class="stripw"><div class="strip" id="stMod" style="--p:1"><i></i></div><span>Mod<br><b>filtro</b></span></div>
@@ -778,11 +790,11 @@ body.fx-rise .device{filter:brightness(1.14) contrast(1.08)}
  <div class="ajgrid">
   <div class="ajsec"><h4>🎨 Apariencia</h4><div class="ajrow" id="ajLook"></div></div>
   <div class="ajsec"><h4>🎵 Música</h4><p>La tónica y la escala deciden qué notas suenan bien. Los sonidos góticos cambian Lead, Pad, Campana y Bajo por órgano, coro, clave y bajo de órgano.</p><div class="ajrow" id="ajMusic"></div></div>
-  <div class="ajsec"><h4>🎹 Teclado MIDI</h4><div class="ajrow"><button class="b" data-aj="cfg">⚙ Configurar MiniLab</button></div></div>
+  <div class="ajsec"><h4>🎹 Teclado MIDI</h4><div class="ajrow"><button class="b" data-aj="cfg">⚙ Configurar teclado MIDI</button></div></div>
   <div class="ajsec"><h4>💾 Proyecto</h4><p>Se guarda solo en este navegador. Usa “Copiar proyecto” para respaldarlo.</p><div class="ajrow" id="ajProj"><button class="b on" data-aj="exp">💾 Exportar audio (MP3 / WAV)</button></div></div>
   <div class="ajsec"><h4>❓ Ayuda</h4><div class="ajrow"><button class="b" data-aj="tour">🧭 Guía de primeros pasos</button><button class="b" data-aj="rec">🥁 Recetas de ritmos</button><button class="b" data-aj="dic">📖 Diccionario</button></div></div>
  </div></div></div>
-<div class="modal" id="cfg"><div class="box wide"><div class="row"><b style="font-size:18px">⚙ Configurar tu MiniLab</b><span class="sp"></span><button class="b sm" id="cfgClose">Listo</button></div><div id="cfgBody"></div></div></div>
+<div class="modal" id="cfg"><div class="box wide"><div class="row"><b style="font-size:18px">⚙ Configurar tu teclado MIDI</b><span class="sp"></span><button class="b sm" id="cfgClose">Listo</button></div><div id="cfgBody"></div></div></div>
 <div class="modal" id="modal"><div class="box">
  <div class="lab" id="mTitle">Proyecto</div>
  <textarea id="mText" spellcheck="false"></textarea>
@@ -1267,8 +1279,10 @@ function filt(type,f,q=.7){ const b=ctx.createBiquadFilter(); b.type=type; b.fre
 function osc(type,f){ const o=ctx.createOscillator(); o.type=type; o.frequency.value=f; return o; }
 const G=()=>ctx.createGain();
 
+/* volumen parejo entre kits: medido contra el kit Normal, pista por pista */
+const KIT_LVL={"nes:kick":1.8,"nes:clap":0.4,"nes:perc":1.86,"nes:lead":1.6,"nes:fm":2.41,"nes:bell":3.16,"gothic:snare":1.98,"gothic:open":0.7,"gothic:bass":0.71,"gothic:arp":1.53,"gothic:bell":2.1,"mushroom:kick":1.85,"mushroom:perc":1.86,"mushroom:lead":1.87,"rpgm:kick":1.47,"rpgm:snare":1.94,"rpgm:perc":1.41,"rpgm:bass":0.65,"rpgm:lead":0.56,"nature:kick":1.47,"nature:snare":2.99,"nature:hat":1.44,"nature:perc":1.43,"nature:lead":0.52,"lsd:hat":1.43,"lsd:bass":0.48,"lsd:lead":1.45,"lsd:fm":0.5,"lsd:pad":3.16,"casio:kick":2.03,"casio:snare":3.16,"casio:clap":1.85,"casio:hat":2.05,"casio:open":1.94,"casio:perc":2.07,"casio:bass":0.71,"casio:lead":0.71,"casio:arp":0.71,"casio:fm":0.65,"casio:pad":0.67,"cthulhu:open":0.7,"cthulhu:perc":1.47,"cthulhu:lead":0.56,"cthulhu:pad":2.03,"arena:snare":1.98,"arena:perc":0.61,"arena:fm":0.65,"cumbia:hat":0.54,"cumbia:open":0.56,"cumbia:arp":1.47,"cumbia:fm":1.76};
 function voice(i,t,v,n,mo){
- let vid=TR[i].id; { const km=kitVoice(vid); if(km){ if(GOTH_VIDS.includes(km)) return voiceGoth(km,i,t,v,n,mo); if(KV[km]||KD[km]) return voiceKit(km,i,t,v,n,mo); vid=km; } }
+ let vid=TR[i].id; { const km=kitVoice(vid); if(km){ const lm=KIT_LVL[S.kit+':'+vid]; if(lm) v*=lm; if(GOTH_VIDS.includes(km)) return voiceGoth(km,i,t,v,n,mo); if(KV[km]||KD[km]) return voiceKit(km,i,t,v,n,mo); vid=km; } }
  const P=S.params[i],a=P.a,b=P.b,out=bus[i], F=()=>mtof(mo??midiOf(i,n));
  switch(vid){
   case 'kick':{
@@ -2219,7 +2233,7 @@ const HELP={
  tabs:()=>({t:'Tres modos',d:'<b>Groovebox</b>: armar ritmos y canciones con pasos. <b>Aprender canciones</b>: notas que caen, para aprender melodías en el teclado. <b>Improvisar</b>: suena una base y tú inventas encima, con ayudas para que siempre suene bien.'}),
  kaos:()=>({t:'Kaos Pad',d:'Un cuadrado para tocar con el dedo o el mouse, como el Kaoss Pad de los DJ. <b>Synth</b>: arrastra y suena una onda cuadrada que sigue la escala (izquierda grave, derecha agudo; arriba brillante). <b>Arpegio</b>: mantén apretado y toca un arpegio al tempo; arriba va más rápido. <b>Filtro + Eco</b> y <b>Crush + Bucle</b>: mueves los efectos de toda la canción. <b>Mantener</b> deja sonando aunque sueltes.',tr:'Pon play, elige Arpegio y mueve el dedo lento de izquierda a derecha.'}),
  pal:()=>({t:'Paleta de colores',d:'Cambia los colores de la pantalla, como cambiar de consola: GameBoy, Arcade, Virtual (rojo y negro), Ámbar, Papel y 16-bit.'}),
- midi:()=>({t:'Conectar tu Arturia MiniLab mkII',d:'1) Enchufa el MiniLab por USB. 2) Pulsa <b>Conectar teclado</b> y acepta el permiso. 3) Toca. Las <b>teclas</b> tocan la pista melódica elegida (con “ajustadas a la escala” nunca desafinan). Los <b>pads</b> tocan las pistas 1–8, y con el botón Pad 9-16 encendido, las 9–16. Las <b>16 perillas</b> controlan lo que muestra el dibujo. La tira <b>Mod</b> cierra el filtro y la tira <b>Pitch</b> hace bucles (arriba = redoble, abajo = bucle 1/4).',tr:'Si una perilla del MiniLab no responde, toca su círculo en el dibujo y gira la perilla real: queda asignada.'}),
+ midi:()=>({t:'Conectar tu teclado MIDI',d:'Funciona con cualquier teclado MIDI USB. Reconoce solo los más típicos: <b>Arturia</b> MiniLab, KeyLab y KeyStep; <b>Akai</b> MPK Mini; <b>Novation</b> Launchkey; <b>Korg</b> nanoKONTROL, nanoKEY y microKEY; <b>M-Audio</b> Oxygen y Keystation; además de Roland, Yamaha, Casio, Alesis, Nektar y Native Instruments. Si tu modelo no está en la lista, mueve tus perillas una por una y se asignan solas. 1) Enchufa el teclado por USB. 2) Pulsa <b>Conectar teclado</b> y acepta el permiso. 3) Toca. Las <b>teclas</b> tocan la pista melódica elegida (con “ajustadas a la escala” nunca desafinan). Los <b>pads</b> tocan las pistas 1–8, y con el botón Pad 9-16 encendido, las 9–16. Las <b>16 perillas</b> controlan lo que muestra el dibujo. La tira <b>Mod</b> cierra el filtro y la tira <b>Pitch</b> hace bucles (arriba = redoble, abajo = bucle 1/4).',tr:'Si una perilla del MiniLab no responde, toca su círculo en el dibujo y gira la perilla real: queda asignada.'}),
  tracks:()=>({t:'Pistas (instrumentos)',d:'Hay 8 instrumentos. Elige uno para ver y editar sus pasos. La <b>M</b> lo silencia sin borrar nada.',v:svgTracks(),tr:'Teclas 1 a 8 para elegir; Shift + número para silenciar.'}),
  fx:()=>({t:'Efectos en vivo',d:'Se usan mientras suena: mantén presionado y al soltar todo vuelve a la normalidad. No cambian lo que escribiste. Nuevos: <b>Gran sala</b> (eco de catedral), <b>Corte</b> (el sonido se corta a ritmo), <b>Bombeo</b> (todo late con cada tiempo) y <b>Subida</b> (un ruido que sube para preparar un cambio: suéltalo justo en el golpe).',tr:'Mantén Filtro agudo + Redoble justo antes de cambiar de patrón.'}),
  'fx-lp':()=>({t:'Filtro grave',d:'Mientras lo mantienes, el sonido se apaga poco a poco, como si la música quedara detrás de una pared.',v:svgSweep('lp')}),
@@ -2278,6 +2292,7 @@ const RECIPES=[
  {n:'House',bpm:124,sw:0,d:'Discoteca: bombo en cada pulso y platillo abierto entre medio.',t:{kick:[0,4,8,12],clap:[4,12],hat:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],open:[2,6,10,14]},bass:[[2,0],[6,0],[10,3],[14,0]]},
  {n:'Reggaetón',bpm:95,sw:0,d:'El “dembow”: bombo parejo y la caja en sus lugares típicos.',t:{kick:[0,4,8,12],snare:[3,6,11,14],hat:[0,2,4,6,8,10,12,14]},bass:[[0,0],[3,0],[6,2],[8,0],[11,0],[14,2]]},
  {n:'Trap',bpm:140,sw:0,d:'Platillos rapidísimos y la caja a la mitad: suena lento y pesado.',t:{kick:[0,7,10],snare:[8],clap:[8],hat:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]},bass:[[0,0],[7,0],[10,-2]]},
+ {n:'🎹 Cumbia villera',bpm:98,sw:.06,kit:'cumbia',skin:'villera',d:'Con el kit de cumbia: güiro parejo, timbal, cencerro, conga, bajo redondo y el teclado villero.',t:{kick:[0,8],snare:[6,14,15],clap:[2,6,10,14],hat:[0,2,3,4,6,7,8,10,11,12,14,15],perc:[3,7,11,13]},bass:[[0,0],[3,0],[4,4],[8,-3],[11,-3],[12,4]],mel:{lead:[[0,7],[2,9],[3,7],[4,4],[6,4],[8,7],[10,9],[11,11],[12,9],[14,7]],fm:[[0,2],[4,4],[8,0],[12,2]],pad:[[0,0],[8,-3]]}},
  {n:'Cumbia',bpm:100,sw:0,d:'Bombo en 1 y 3, “guacharaca” en el platillo y campana a contratiempo.',t:{kick:[0,8],snare:[6,14],hat:[0,2,3,4,6,7,8,10,11,12,14,15],perc:[2,6,10,14]},bass:[[0,0],[6,4],[8,-3],[14,4]]},
 ];
 function recipeRows(r){
@@ -2287,7 +2302,7 @@ function recipeRows(r){
  Object.entries(r.mel||{}).forEach(([id,arr])=>{ const i=TR.findIndex(t=>t.id===id); arr.forEach(([s,n])=>rows[i][s]=mk(n,s%4?.8:1)); });
  return rows;
 }
-function applyRecipe(i){ const r=RECIPES[i]; pushUndo(); if(r.bank&&S.bank!==r.bank) setBank(r.bank,true); S.pats[S.cur]={t:recipeRows(r)}; S.bpm=r.bpm; S.swing=r.sw; updDelay(); selStep=null; save(); renderAll(); closeHM(); msg(r.n.toUpperCase()+' EN P'+pad2(S.cur+1)); if(!playing) play(); }
+function applyRecipe(i){ const r=RECIPES[i]; pushUndo(); if(r.bank&&S.bank!==r.bank) setBank(r.bank,true); if(r.kit&&S.kit!==r.kit) setKit(r.kit,true); if(r.skin&&S.skin!==r.skin) setSkin(r.skin,true); S.pats[S.cur]={t:recipeRows(r)}; S.bpm=r.bpm; S.swing=r.sw; updDelay(); selStep=null; save(); renderAll(); closeHM(); msg(r.n.toUpperCase()+' EN P'+pad2(S.cur+1)); if(!playing) play(); }
 
 /* tip */
 const tip=$('#tip');
@@ -2371,18 +2386,43 @@ function maybeOfferTour(){ let seen=false; try{ seen=!!localStorage.getItem('pul
  tip.querySelector('[data-tour="start"]').addEventListener('click',ev=>{ ev.stopPropagation(); tourShow(0); });
 }
 
-/* ---------- MIDI: Arturia MiniLab mkII ---------- */
+/* ---------- MIDI: MiniLab y teclados de otras marcas ---------- */
 const MIDI_ACT=KN.map(K=>[K.k,K.lab()]);
 const DEF_CC=[112,74,71,76,77,93,73,75,114,18,19,16,17,91,79,72];
 const defMap=()=>{ const m={}; DEF_CC.forEach((cc,i)=>m[cc]=i); return m; };
-let MM={map:defMap(),mode:'auto',snap:true};
+/* perfiles: qué controles CC manda cada teclado típico (en orden: perilla 1, 2, 3…). Si no se conoce, las perillas se asignan solas al moverlas */
+const MIDI_PROFILES=[
+ {id:'minilab3',re:/minilab\s*3/i,n:'Arturia MiniLab 3',cc:[74,71,76,77,93,18,19,16,82,83,85,17]},
+ {id:'minilab2',re:/minilab/i,n:'Arturia MiniLab mkII',cc:DEF_CC},
+ {id:'keylab',re:/keylab/i,n:'Arturia KeyLab Essential',cc:[74,71,76,77,93,18,19,16,73,75,79,72]},
+ {id:'keystep',re:/keystep|beatstep/i,n:'Arturia KeyStep / BeatStep',cc:[10,74,71,76,77,93,73,75,114,18,19,16,17,91,79,72]},
+ {id:'mpkmini3',re:/mpk\s*mini\s*(3|iii|mk\s*3|plus|iv|4)/i,n:'Akai MPK Mini mk3',cc:[70,71,72,73,74,75,76,77]},
+ {id:'mpkmini',re:/mpk\s*mini|mpk\s*play/i,n:'Akai MPK Mini',cc:[1,2,3,4,5,6,7,8]},
+ {id:'akai',re:/akai|mpk|apc\s*key|lpk/i,n:'Akai',cc:[]},
+ {id:'lkmini',re:/launchkey\s*mini/i,n:'Novation Launchkey Mini',cc:[21,22,23,24,25,26,27,28]},
+ {id:'launchkey',re:/launchkey|flkey/i,n:'Novation Launchkey / FLkey',cc:[21,22,23,24,25,26,27,28]},
+ {id:'novation',re:/novation|impulse|launchpad|sl\s*mk/i,n:'Novation',cc:[]},
+ {id:'nanok',re:/nanokontrol/i,n:'Korg nanoKONTROL2',cc:[16,17,18,19,20,21,22,23,0,1,2,3,4,5,6,7]},
+ {id:'korg',re:/korg|nanokey|microkey|nanopad|minilogue|volca|keystage/i,n:'Korg',cc:[]},
+ {id:'maudio',re:/m-?audio|oxygen|keystation|hammer|code\s*\d/i,n:'M-Audio',cc:[]},
+ {id:'nektar',re:/nektar|impact|se\d/i,n:'Nektar',cc:[]},
+ {id:'roland',re:/roland|a-?\d\d|go:?keys|fantom|juno/i,n:'Roland',cc:[]},
+ {id:'yamaha',re:/yamaha|psr|p-?\d{2,3}|reface|digital piano/i,n:'Yamaha',cc:[]},
+ {id:'casio',re:/casio|ct-?s|ctk|lk-?\d/i,n:'Casio',cc:[]},
+ {id:'alesis',re:/alesis|v\s*mini|vi\d\d|q\d\d/i,n:'Alesis',cc:[]},
+ {id:'native',re:/komplete|kontrol|maschine/i,n:'Native Instruments',cc:[]},
+];
+const profileOf=name=>MIDI_PROFILES.find(p=>p.re.test(name||''))||null;
+const mapFrom=cc=>{ const m={}; cc.forEach((c,i)=>{ if(i<KN.length) m[c]=i; }); return m; };
+const AUTO_SKIP=new Set([0,32,64,65,66,67,120,121,122,123,124,125,126,127]);
+let MM={map:defMap(),mode:'auto',snap:true,dev:'minilab2'};
 try{ const o=JSON.parse(localStorage.getItem('pulso16-midi')||'null'); if(o&&o.map) MM=Object.assign(MM,o); }catch(e){}
 const saveMM=()=>{ try{ localStorage.setItem('pulso16-midi',JSON.stringify(MM)); }catch(e){} };
 let midiAcc=null, learnIdx=null, gotMsg=false; const ccLast={}, ccRel={}, stepAcc={};
 function midiStatus(t,k=''){ const el=$('#mStat'); el.textContent=t; el.className='mstat '+k; }
 function mon(html){ $('#mMon').innerHTML=html; }
 let msgCount=0, noMsgT=null;
-const FIXSTEPS=`<b>No llega nada del MiniLab.</b> Haz esto en orden:<br>1) Cierra <b>Analog Lab</b>, <b>MIDI Control Center</b>, <b>Arturia Software Center</b> y cualquier programa de música (revisa los íconos junto al reloj).<br>2) <b>Desenchufa el USB</b> del MiniLab, espera 5 segundos y vuelve a enchufarlo.<br>3) <b>Cierra Chrome por completo</b> (todas las ventanas) y vuelve a abrir este archivo.<br>4) Pulsa <b>Conectar teclado</b> y toca una tecla.`;
+const FIXSTEPS=`<b>No llega nada del teclado.</b> Haz esto en orden:<br>1) Cierra los programas de música y el editor de tu teclado (por ejemplo <b>Analog Lab</b>, <b>MIDI Control Center</b>, <b>MPK Mini Editor</b>, <b>Novation Components</b>, Ableton o FL Studio) (revisa los íconos junto al reloj).<br>2) <b>Desenchufa el USB</b> del MiniLab, espera 5 segundos y vuelve a enchufarlo.<br>3) <b>Cierra Chrome por completo</b> (todas las ventanas) y vuelve a abrir este archivo.<br>4) Pulsa <b>Conectar teclado</b> y toca una tecla.`;
 async function connectMIDI(){
  if(!navigator.requestMIDIAccess){ midiStatus('Este navegador no tiene MIDI','err'); mon('Usa <b>Chrome</b> o <b>Edge</b> en el computador (Safari y Firefox no sirven).'); return; }
  if(midiAcc){ for(const inp of midiAcc.inputs.values()){ try{ inp.onmidimessage=null; await inp.close(); }catch(e){} } midiAcc=null; }
@@ -2395,10 +2435,15 @@ async function connectMIDI(){
    list.push(`${inp.name} <small>(${inp.state==='connected'?'enchufado':'desenchufado'}, ${inp.connection==='open'?'abierto':'cerrado'})</small>`);
    (inp.state==='connected'&&inp.connection==='open'?ok:busy).push(inp.name); }
   $('#bMidi').textContent='Reconectar';
-  if(!ins.length){ midiStatus('No veo ningún teclado','warn'); mon('Chrome no ve ningún teclado MIDI. Enchufa el MiniLab por USB (deben encenderse sus luces) y pulsa <b>Reconectar</b>.'); return; }
+  if(!ins.length){ midiStatus('No veo ningún teclado','warn'); mon('Chrome no ve ningún teclado MIDI. Enchufa tu teclado por USB (deben encenderse sus luces) y pulsa <b>Reconectar</b>.'); return; }
   if(!ok.length){ midiStatus('El teclado está ocupado','err'); mon(FIXSTEPS); return; }
+  { const pf=profileOf(ok.join(' ')), pid=pf?pf.id:'generic';
+   if(MM.dev!==pid){ MM.dev=pid; MM.map=pf&&pf.cc.length?mapFrom(pf.cc):{}; saveMM(); renderMidi(); }
+   const lg=document.querySelector('.mlogo'); if(lg) lg.innerHTML=pf?pf.n.replace(/^(\S+)\s/,'$1 <small>')+'</small>':'Teclado MIDI <small>genérico</small>';
+   if(pf&&!pf.cc.length||!pf) setTimeout(()=>mon(`Detecté <b>${pf?pf.n:'un teclado MIDI'}</b>. Las teclas ya suenan. <b>Mueve tus perillas una por una</b>: cada una se asigna sola a la siguiente perilla de la pantalla.`),400);
+   else setTimeout(()=>mon(`Detecté <b>${pf.n}</b>: perillas, pads y teclas ya están asignados.`),400); }
   midiStatus('Conectado: '+ok.join(', '),'ok'); if(UI.col.minilab){ UI.col.minilab=false; saveUI(); applyUI(); }
-  if(!msgCount) mon(`Puertos: ${list.join(' · ')}<br><b>Toca una tecla del MiniLab ahora.</b>`);
+  if(!msgCount) mon(`Puertos: ${list.join(' · ')}<br><b>Toca una tecla de tu teclado ahora.</b>`);
   clearTimeout(noMsgT); noMsgT=setTimeout(()=>{ if(!msgCount){ midiStatus('Conectado, pero no llega nada','warn'); mon(FIXSTEPS); } },12000);
  };
  await hook(); midiAcc.onstatechange=e=>{ if(e.port&&e.port.type==='input') hook(); };
@@ -2423,9 +2468,13 @@ function onCC(num,val,ch){
  if(learnExtra&&val>0){ MM.extra[learnExtra]={t:'c',v:num}; learnExtra=null; saveMM(); openCfg(); return; }
  { const xk=matchExtra('c',num); if(xk){ if(val>0) doExtra(xk); return; } }
  if(learnIdx!==null){ for(const k in MM.map) if(MM.map[k]===learnIdx) delete MM.map[k]; MM.map[num]=learnIdx; const K=KN[learnIdx]; msg(K.lab().toUpperCase()+' = CC'+num); mon(`✅ La perilla real (CC ${num}) ahora controla <b>${K.lab()}</b>.`); learnIdx=null; saveMM(); renderMidi(); if(wizI!==null) wizNext(); return; }
+ if(num===7&&!(7 in MM.map)){ S.master=val/127; if(master) master.gain.setTargetAtTime(S.master,ctx.currentTime,.02); renderKnob(KN.find(k=>k.k==='master')); mon(`🔊 Volumen general ${Math.round(val/127*100)}%`); return; }
+ if(num===64) return;
  if(num===1){ S.dj=.5-(val/127)*.5; applyDJ(); setStrip('#stMod',val/127); renderKnob(KN.find(k=>k.k==='dj')); mon(`〰 Tira Mod → filtro ${Math.round(val/127*100)}%`); return; }
  if(num>=22&&num<=29&&!(num in MM.map)){ if(val>0){ mon(`🥁 Pad ${num-22+9}${chTxt(ch)}`); pressPad(num-22,1,1); } else releasePad(num-22,1); return; }
  const ai=MM.map[num];
+ if(ai===undefined&&!AUTO_SKIP.has(num)){ const used=new Set(Object.values(MM.map)); let free=-1; for(let i=0;i<KN.length;i++) if(!used.has(i)){ free=i; break; }
+  if(free>=0){ MM.map[num]=free; saveMM(); renderMidi(); mon(`✨ Nueva perilla (CC ${num}) → <b>${KN[free].lab()}</b>. Si prefieres otra cosa, usa <b>Asignar perillas</b>.`); return onCC(num,val,ch); } }
  if(ai===undefined){ mon(`🎛 Perilla sin asignar (CC ${num} = ${val}). Pulsa <b>Asignar perillas</b>, toca una perilla en pantalla y gira esta.`); return; }
  knobGlow(ai);
  let rel=MM.mode==='rel'?true:MM.mode==='abs'?false:!!ccRel[num];
@@ -3514,7 +3563,11 @@ const KV={
  abyssDrone:{w:[['sawtooth',1,-9,.4],['sawtooth',1,9,.4],['sine',.5,0,.5],['sawtooth',1.5,0,.12]],oct:-1,f:['lowpass',420,0,2],lfoF:[.15,220],att:.5,len:1.2,sus:1,rel:.9,vib:[.3,14,.5],g:.15},
  eerie:{w:[['sine',1,0,1],['triangle',1,3,.25]],att:.08,len:.5,sus:1,rel:.25,vib:[6.3,38,.15],g:.24},
  p5pad:{w:[['p5',1,-6,.5],['p25',1,6,.4]],att:.03,len:.6,sus:1,rel:.12,vib:[5,8,.3],g:.17},
- nesBell:{w:[['p125',1,0,1]],oct:1,att:.001,len:.25,g:.24}
+ nesBell:{w:[['p125',1,0,1]],oct:1,att:.001,len:.25,g:.24},
+ villeraKeys:{w:[['sawtooth',1,-7,.5],['square',1,7,.32],['sawtooth',2,0,.1]],f:['lowpass',2600,1.6,1.2],att:.008,len:.28,sus:1,rel:.08,vib:[6.4,16,.12],g:.2},
+ acordeon:{w:[['sawtooth',1,-10,.42],['sawtooth',1,10,.42],['square',2,0,.12],['sawtooth',.5,0,.1]],f:['bandpass',1700,0,.9],att:.03,len:.34,sus:1,rel:.1,vib:[5.6,7,.18],g:.3},
+ cumbiaBass:{w:[['sine',1,0,1],['triangle',1,0,.45],['sine',2,0,.08]],oct:-1,pd:[1.03,.03],f:['lowpass',900],att:.004,len:.26,g:.6},
+ guitarCumb:{w:[['triangle',1,0,.8],['sawtooth',2,3,.14],['sine',3,0,.06]],f:['lowpass',2600,3],att:.002,len:.28,g:.32}
 };
 function synK(D,i,t,v,n,mo){
  const P=S.params[i],a=P.a,b=P.b,out=bus[i], f=mtof((mo??midiOf(i,n))+(D.oct||0)*12);
@@ -3562,7 +3615,14 @@ const KD={
  drip:{p:[{k:'sw',w:'sine',f0:500,f1:1600,pt:.06,dec:.09,g:.35}]},
  chime:{p:[{k:'mt',f:1400,r:[1,2.4,4.1],dec:.7,g:.12}]},
  tom:{p:[{k:'sw',w:'sine',f0:200,f1:110,pt:.1,dec:.3,g:.7}]},
- cymbal:{p:[{k:'nz',ft:'highpass',ff:5000,dec:.9,g:.25,att:.005},{k:'mt',f:420,r:[1,1.71,2.53],dec:.6,g:.05}]}
+ cymbal:{p:[{k:'nz',ft:'highpass',ff:5000,dec:.9,g:.25,att:.005},{k:'mt',f:420,r:[1,1.71,2.53],dec:.6,g:.05}]},
+ cumbKick:{p:[{k:'sw',w:'sine',f0:120,f1:46,pt:.06,dec:.3,g:.95},{k:'sw',w:'triangle',f0:900,f1:200,pt:.01,dec:.015,g:.25}]},
+ timbal:{p:[{k:'sw',w:'triangle',f0:560,f1:470,pt:.03,dec:.22,g:.55},{k:'mt',f:560,r:[1,1.58,2.24],dec:.28,g:.07},{k:'nz',ft:'highpass',ff:2500,dec:.03,g:.3}]},
+ cencerro:{p:[{k:'mt',f:560,r:[1,1.5],dec:.16,g:.22,att:.001},{k:'nz',ft:'bandpass',ff:3000,q:4,dec:.01,g:.12}]},
+ guiro:{p:[{k:'nz',ft:'bandpass',ff:4300,q:2.6,dec:.02,g:.42},{k:'nz',ft:'bandpass',ff:4300,q:2.6,dec:.02,g:.36,dl:.022},{k:'nz',ft:'bandpass',ff:4600,q:2.6,dec:.045,g:.34,dl:.044}]},
+ guiroLargo:{p:[{k:'nz',ft:'bandpass',ff:4000,q:2.2,dec:.03,g:.36},{k:'nz',ft:'bandpass',ff:4200,q:2.2,dec:.03,g:.34,dl:.035},{k:'nz',ft:'bandpass',ff:4400,q:2.2,dec:.03,g:.32,dl:.07},{k:'nz',ft:'bandpass',ff:4600,q:2.2,dec:.08,g:.3,dl:.105}]},
+ congaHi:{p:[{k:'sw',w:'sine',f0:400,f1:340,pt:.03,dec:.2,g:.6},{k:'nz',ft:'bandpass',ff:1700,q:1.5,dec:.015,g:.25}]},
+ congaLo:{p:[{k:'sw',w:'sine',f0:270,f1:225,pt:.04,dec:.26,g:.65},{k:'nz',ft:'bandpass',ff:1200,q:1.5,dec:.015,g:.2}]}
 };
 function drK(D,i,t,v){ const P=S.params[i],tu=.6+P.a*.8,dk=.4+P.b*1.6,out=bus[i];
  D.p.forEach(p=>{
@@ -3584,7 +3644,8 @@ const KITS=[
  {id:'lsd',n:'Psicodélico',e:'🌀',sk:'lsd',m:{hat:['shaker','Maraca'],perc:['tabla','Tabla'],bass:['wobbleBass','Bajo wobble'],lead:['phaserLead','Melodía fase'],fm:['eerie','Theremin'],pad:['sitar','Sitar'],bell:['glassBell','Cristal']}},
  {id:'casio',n:'Calculadora retro',e:'🧮',sk:'casio',m:{kick:['casioKick','Bombo casio'],snare:['casioSnare','Caja casio'],clap:['casioClap','Palmas casio'],hat:['casioHat','Platillo casio'],open:['casioOpen','Abierto casio'],perc:['beep','Bip'],bass:['casioBass','Bajo casio'],lead:['casioLead','Melodía casio'],arp:['casioLead','Arpegio casio'],fm:['casioOrgan','Órgano casio'],pad:['casioOrgan','Acorde casio'],bell:['casioBeep','Bip casio']}},
  {id:'cthulhu',n:'Abismo de Cthulhu',e:'🐙',sk:'cthulhu',m:{kick:['deepKick','Bombo abisal'],snare:['ritual','Tambor ritual'],open:['gong','Gong'],perc:['drip','Gota'],bass:['tentacleBass','Bajo tentáculo'],lead:['eerie','Theremin'],fm:['choir','Coro hundido'],pad:['abyssDrone','Drone abisal'],bell:['sunkBell','Campana hundida']}},
- {id:'arena',n:'Arena épica',e:'⚔️',sk:'arena',m:{kick:['warDrum','Tambor de guerra'],snare:['orchSnare','Caja orquesta'],clap:['orchHit','Golpe orquesta'],open:['cymbal','Platillo épico'],perc:['tom','Tom'],bass:['cello','Chelos'],lead:['brass','Metales'],arp:['harp','Arpa'],fm:['horn','Corno'],pad:['strings','Cuerdas épicas'],bell:['glock','Campanas']}}
+ {id:'arena',n:'Arena épica',e:'⚔️',sk:'arena',m:{kick:['warDrum','Tambor de guerra'],snare:['orchSnare','Caja orquesta'],clap:['orchHit','Golpe orquesta'],open:['cymbal','Platillo épico'],perc:['tom','Tom'],bass:['cello','Chelos'],lead:['brass','Metales'],arp:['harp','Arpa'],fm:['horn','Corno'],pad:['strings','Cuerdas épicas'],bell:['glock','Campanas']}},
+ {id:'cumbia',n:'Cumbia villera',e:'🎹',sk:'villera',m:{kick:['cumbKick','Bombo cumbia'],snare:['timbal','Timbal'],clap:['cencerro','Cencerro'],hat:['guiro','Güiro'],open:['guiroLargo','Güiro largo'],perc:['congaHi','Conga'],bass:['cumbiaBass','Bajo cumbia'],lead:['villeraKeys','Teclado villero'],arp:['guitarCumb','Guitarra'],fm:['acordeon','Acordeón'],pad:['strings','Colchón'],bell:['marimba','Marimba']}}
 ];
 function curKit(){ return KITS.find(k=>k.id===S.kit)||KITS[0]; }
 function kitVoice(tid){ const m=curKit().m[tid]; return m?m[0]:null; }
@@ -3748,6 +3809,13 @@ document.addEventListener('click',e=>{ if(!e.target.closest('.morewrap')) mb.cla
 applyUI();
 $('#bColor').onclick=()=>{ setColorMode(!LC); msg(LC?'PANTALLA A COLOR':'PANTALLA RETRO'); }; setColorMode(LC);
 
+/* ---------- estilo Cumbia villera ---------- */
+SKINS.push({id:'villera',n:'Cumbia villera 🎹',pal:19});
+{ const o=document.createElement('option'); o.value='villera'; o.textContent='Estilo: Cumbia villera 🎹'; $('#selSkin').appendChild(o); }
+SKIN_THEME.villera={bg:['#12021c','#5a0a5e'],far:'#3a0a5a',mid:'#ff2e88',dark:'#07010d',light:'#fff4fb',a:['#ff2e88','#3ad6ff','#ffe14d','#3dff8a']};
+SKIN_FX.villera={c:['#ff2e88','#3ad6ff','#ffe14d','#3dff8a'],sh:'star'};
+KP_MOT.villera='★';
+if(S.skin==='villera') setSkin('villera');
 /* ---------- cambiar estilo rápido desde la cabecera (◀ 🎨 ▶) ---------- */
 (()=>{ const sel=$('#selSkin');
  const step=d=>{ const o=[...sel.options], i=o.findIndex(x=>x.value===sel.value); sel.value=o[((i+d)%o.length+o.length)%o.length].value; sel.dispatchEvent(new Event('change')); };

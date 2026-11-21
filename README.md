@@ -9,12 +9,14 @@ Caja de ritmos de bolsillo que también es un videojuego retro. Haces música au
 - 16 pistas y 16 pasos para armar ritmos
 - Un juego retro que reacciona a cada golpe, con jefes y mundos
 - Pantalla grande (gira el celular) y vista de **Ondas** para ver el sonido dibujado
+- Kit y receta de **Cumbia villera** (güiro, timbal, cencerro, conga, acordeón y teclado villero) con su propio estilo visual
+- Funciona con teclados MIDI de muchas marcas: Arturia, Akai, Novation, Korg, M-Audio, Roland, Yamaha, Casio y más
 - 10 kits de sonido que cambias con ◀ ▶ (Normal, 8-bit, castillo, hongos, bosque, psicodélico, calculadora, abismo, arena)
 - Kaos Pad: arrastras el dedo y tocas (synth, arpegio, filtros, atmósferas)
 - 12 efectos en vivo que se mantienen apretados (filtros, bucles, eco, bitcrush, gran sala, corte, bombeo, subida…)
 - Modo para aprender canciones y modo para improvisar
 - 26 estilos visuales
-- Teclado MIDI (probado con Arturia MiniLab mkII) mediante Web MIDI
+- Teclado MIDI por USB mediante Web MIDI (probado con Arturia MiniLab mkII; reconoce otras marcas y asigna las perillas solas)
 - Exporta tu tema en MP3 o WAV
 
 Todo funciona en una sola página, sin instalar nada. Cada botón tiene una ayuda **?**.
